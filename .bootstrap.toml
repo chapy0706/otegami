@@ -1,0 +1,13 @@
+# .bootstrap.toml — otegami
+#
+# project-bootstrap への指示書。README 確定の合図として置く。
+# tool が読むのは project.name / project.description / stack.id / stack.skills_base のみ。
+# 原則・設定・スキーマは design-spec と ADR が持つ。ここには重複させない。
+
+[project]
+name        = "otegami"
+description = "お手紙のように、テキストを一度だけ託して別の場所で受け取る最小のテキスト共有サービス"
+
+[stack]
+id          = "rust-axum-askama"
+skills_base = "rust"
