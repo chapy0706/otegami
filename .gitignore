@@ -1,3 +1,20 @@
+
+### Rust
+# ビルド成果物。コミットを膨らませる正体。workspace は直下の target を共有する
+/target
+
+# rustfmt のバックアップ
+**/*.rs.bk
+
+# 環境変数・秘密情報。DATABASE_URL などは絶対にコミットしない
+.env
+.env.*
+!.env.example
+
+# 補足(あえて無視しないもの):
+#  - Cargo.lock は追跡する。otegami は実行ファイル(apps/web, apps/cleaner)を配るため
+#  - .sqlx/ は追跡する。SQLx オフラインクエリデータで、CI でも型検査を効かせるため
+
 ### macOS
 # Finder metadata
 .DS_Store
@@ -6,7 +23,7 @@
 ._*
 
 # Custom folder icons
-Icon
+Icon
 
 # Volume root files
 .DocumentRevisions-V100
