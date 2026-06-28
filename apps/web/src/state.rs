@@ -4,8 +4,8 @@ use time::Duration;
 
 use application::use_cases::{CreateNote, ViewNote};
 
-/// 実行時設定。合成位置(main)で組み立て、AppState 経由でハンドラに渡す。
-/// 本来は bootstrap.toml / 環境から読む(外部化は issue-08)。
+/// ハンドラが参照する設定の部分集合。合成位置(main)で `Settings` から組み立て、
+/// AppState 経由でハンドラに渡す。
 #[derive(Clone)]
 pub struct Config {
     /// ノートの既定 TTL(ADR-0003)。CreateNote の失効時刻算出に使う。

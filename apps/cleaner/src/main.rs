@@ -12,13 +12,14 @@ use sqlx::postgres::PgPoolOptions;
 
 use application::use_cases::PurgeNotes;
 use domain::ports::{Clock, NoteRepository};
-use infrastructure::{PgNoteRepository, SystemClock};
+use infrastructure::{PgNoteRepository, Settings, SystemClock};
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
-    let database_url = std::env::var("DATABASE_URL").context("DATABASE_URL must be set")?;
+    // web と同じ実行時設定を読む(config.toml + 環境変数)。
+    let settings = Settings::load().context("failed to load settings")?;
     let pool = PgPoolOptions::new()
-        .connect(&database_url)
+        .connect(&settings.database_url)
         .await
         .context("failed to connect to Postgres")?;
 

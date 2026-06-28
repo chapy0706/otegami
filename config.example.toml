@@ -1,0 +1,38 @@
+# otegami 実行時設定の例(design-spec 10章)。
+#
+# 実体は config.toml に置くか、環境変数で与える。環境変数が config.toml より優先される。
+# 設定ファイルのパスは OTEGAMI_CONFIG で変更できる(既定 config.toml)。
+# このファイル自体は雛形で、コミットしてよい(秘密を書かない)。
+#
+# 対応する環境変数:
+#   database_url            -> DATABASE_URL
+#   ttl_days                -> OTEGAMI_TTL_DAYS
+#   slug_length             -> OTEGAMI_SLUG_LENGTH
+#   password_max_len        -> OTEGAMI_PASSWORD_MAX_LEN
+#   rate_limit_max          -> OTEGAMI_RATE_LIMIT_MAX
+#   rate_limit_period_secs  -> OTEGAMI_RATE_LIMIT_PERIOD_SECS
+#   batch_interval_secs     -> OTEGAMI_BATCH_INTERVAL_SECS
+#   bind_addr               -> OTEGAMI_BIND_ADDR
+
+# データベース接続情報。秘密を含むため、本番では config.toml に直書きせず
+# 環境変数(DATABASE_URL)で与えることを推奨する。
+database_url = "postgres://USER:PASSWORD@HOST:5432/otegami"
+
+# 既定 TTL(日)。作成から自動失効までの日数。
+ttl_days = 1
+
+# 発行する slug の長さ(文字)。
+slug_length = 6
+
+# 閲覧パスワードの最大長(文字)。ドメインの不変条件は 1〜4。
+password_max_len = 4
+
+# レート制限(閲覧 POST、IP+slug 単位)。既定 5回 / 600秒(10分)。
+rate_limit_max = 5
+rate_limit_period_secs = 600
+
+# 掃除バッチの駆動間隔(秒)。スケジューラ設定の目安。既定 600秒(10分)。
+batch_interval_secs = 600
+
+# web の待ち受けアドレス。
+bind_addr = "0.0.0.0:8080"

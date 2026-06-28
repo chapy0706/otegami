@@ -24,3 +24,4 @@ sqlx = { version = "0.8", default-features = false, features = [
 ] }
 time = "0.3"
 anyhow = "1"
+governor = "0.6"
