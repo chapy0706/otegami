@@ -4,4 +4,19 @@ version.workspace = true
 edition.workspace = true
 publish.workspace = true
 
+[[bin]]
+name = "cleaner"
+path = "src/main.rs"
+
 [dependencies]
+domain = { path = "../../crates/domain" }
+application = { path = "../../crates/application" }
+infrastructure = { path = "../../crates/infrastructure" }
+
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
+sqlx = { version = "0.8", default-features = false, features = [
+    "runtime-tokio",
+    "tls-rustls",
+    "postgres",
+] }
+anyhow = "1"
