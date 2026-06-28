@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>otegami - 作成</title>
+</head>
+<body>
+<h1>otegami</h1>
+
+{% match created_url %}
+  {% when Some with (url) %}
+    <p>作成しました。次の URL を控えてください。</p>
+    <p><a href="{{ url }}">{{ url }}</a></p>
+  {% when None %}
+{% endmatch %}
+
+{% match error %}
+  {% when Some with (msg) %}<p>{{ msg }}</p>
+  {% when None %}
+{% endmatch %}
+
+<form method="post" action="/create">
+  <p>
+    <label>タイトル(任意)<br>
+      <input type="text" name="title">
+    </label>
+  </p>
+  <p>
+    <label>本文<br>
+      <textarea name="body" rows="10" cols="60" required></textarea>
+    </label>
+  </p>
+  <p>
+    <label>パスワード(半角英数 1〜{{ password_max_len }} 文字)<br>
+      <input type="password" name="password" maxlength="{{ password_max_len }}" required>
+    </label>
+  </p>
+  <p>
+    <label><input type="checkbox" name="burn_after_view"> 閲覧後に削除</label>
+  </p>
+  <p><button type="submit">作成</button></p>
+</form>
+
+<p>発行される URL は {{ slug_length }} 文字。ノートは {{ ttl_days }} 日で自動失効します。</p>
+</body>
+</html>

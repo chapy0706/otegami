@@ -1,0 +1,4 @@
+# テンプレートは workspace ルートの templates/ に置く(README のディレクトリ構成)。
+# dirs は CARGO_MANIFEST_DIR(apps/web)からの相対で解決される。
+[general]
+dirs = ["../../templates"]

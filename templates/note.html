@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>otegami</title>
+</head>
+<body>
+{% match title %}
+  {% when Some with (t) %}<h1>{{ t }}</h1>
+  {% when None %}
+{% endmatch %}
+<pre>{{ body }}</pre>
+</body>
+</html>
