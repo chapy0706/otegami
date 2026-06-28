@@ -1,0 +1,15 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "UPDATE notes SET viewed_at = $2 WHERE slug = $1 AND viewed_at IS NULL",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Text",
+        "Timestamptz"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "8b4f1c685468f3176a8e1b30cb745abbf7e03f0eaa0750d34b098433b6e8162f"
+}

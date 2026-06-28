@@ -1,0 +1,14 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\n            DELETE FROM notes\n            WHERE expires_at < $1\n               OR (burn_after_view AND viewed_at IS NOT NULL)\n            ",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Timestamptz"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "75a1a00d1fdbdc20ba42ac1ab6fd041d57aef435e323e21bcfbd426fd58409d8"
+}
