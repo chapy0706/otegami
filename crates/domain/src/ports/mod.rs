@@ -11,4 +11,4 @@ pub use password_hasher::PasswordHasher;
 pub use slug_generator::SlugGenerator;
 
 // ポートのシグネチャで使うエラーは errors に定義し、ここから再公開する。
-pub use crate::errors::{HashError, RepositoryError};
+pub use crate::errors::{HashError, InsertError, RepositoryError};

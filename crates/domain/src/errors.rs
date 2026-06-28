@@ -23,10 +23,27 @@ pub enum CreateNoteError {
     Unexpected,
 }
 
+/// 掃除失敗。掃除は運用経路(バッチ)のため、原因を持たせず単一の値に畳む。
+#[derive(Debug, Error)]
+pub enum PurgeNotesError {
+    #[error("unexpected error")]
+    Unexpected,
+}
+
 /// 永続化層から返る低レベルなエラー。ユースケース側で適切な単一エラーへ畳む。
 #[derive(Debug, Error)]
 #[error("repository error: {0}")]
 pub struct RepositoryError(pub String);
+
+/// ノート挿入の失敗。slug の一意制約違反(衝突)を区別し、ユースケース側の
+/// slug 採番リトライ判断に使う。それ以外の障害は `Backend` に畳む。
+#[derive(Debug, Error)]
+pub enum InsertError {
+    #[error("slug already exists")]
+    Conflict,
+    #[error(transparent)]
+    Backend(#[from] RepositoryError),
+}
 
 /// パスワードハッシュ化の失敗。
 #[derive(Debug, Error)]
