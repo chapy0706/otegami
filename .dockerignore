@@ -1,0 +1,5 @@
+target
+.git
+.sqlx/.gitignore
+**/*.rs.bk
+.env
